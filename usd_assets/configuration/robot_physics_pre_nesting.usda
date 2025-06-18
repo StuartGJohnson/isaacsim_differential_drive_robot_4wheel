@@ -1,0 +1,380 @@
+#usda 1.0
+(
+    defaultPrim = "differential_drive_robot_4wheel"
+    metersPerUnit = 1
+    subLayers = [
+        @robot_base.usda@
+    ]
+    upAxis = "Z"
+)
+
+over "differential_drive_robot_4wheel"
+{
+    over "body_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float3 physics:diagonalInertia = (0.0069984, 0.02379456, 0.0279936)
+        float physics:mass = 4.6656
+        quatf physics:principalAxes = (1, 0, 0, 0)
+        bool physxArticulation:enabledSelfCollisions = 0
+        int physxArticulation:solverPositionIterationCount = 32
+        int physxArticulation:solverVelocityIterationCount = 1
+
+        def Xform "collisions" (
+            prepend apiSchemas = ["PhysicsCollisionAPI"]
+            instanceable = false
+            prepend references = </colliders/body_link>
+        )
+        {
+        }
+
+        def PhysicsFixedJoint "battery_joint"
+        {
+            rel physics:body0 = </differential_drive_robot_4wheel/body_link>
+            rel physics:body1 = </differential_drive_robot_4wheel/battery_link>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            float physics:JointEquivalentInertia = 0.025930585
+            point3f physics:localPos0 = (0.007, 0, 0.0495)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+
+        def PhysicsFixedJoint "orin_joint"
+        {
+            rel physics:body0 = </differential_drive_robot_4wheel/battery_link>
+            rel physics:body1 = </differential_drive_robot_4wheel/orin_link>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            float physics:JointEquivalentInertia = 0.015391661
+            point3f physics:localPos0 = (0.01, 0, 0.0555)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+
+        def PhysicsFixedJoint "d435_joint"
+        {
+            rel physics:body0 = </differential_drive_robot_4wheel/orin_link>
+            rel physics:body1 = </differential_drive_robot_4wheel/d435_link>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            float physics:JointEquivalentInertia = 0.00043371532
+            point3f physics:localPos0 = (0.073, 0, 0.0235)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+
+        def PhysicsFixedJoint "gps_joint"
+        {
+            rel physics:body0 = </differential_drive_robot_4wheel/orin_link>
+            rel physics:body1 = </differential_drive_robot_4wheel/gps_link>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            float physics:JointEquivalentInertia = 0.00007859071
+            point3f physics:localPos0 = (0.034, -0.076, -0.016)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+
+        def PhysicsFixedJoint "lidar_joint"
+        {
+            rel physics:body0 = </differential_drive_robot_4wheel/orin_link>
+            rel physics:body1 = </differential_drive_robot_4wheel/lidar_link>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            float physics:JointEquivalentInertia = 0.0003721402
+            point3f physics:localPos0 = (-0.045, 0, 0.0595)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+
+        def PhysicsRevoluteJoint "left_wheel2_joint" (
+            prepend apiSchemas = ["PhysxJointAPI", "PhysicsDriveAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 100000
+            float drive:angular:physics:maxForce = inf
+            float drive:angular:physics:stiffness = 1.7453293
+            #float drive:angular:physics:targetVelocity = 500
+            uniform token drive:angular:physics:type = "force"
+            uniform token physics:axis = "Y"
+            rel physics:body0 = </differential_drive_robot_4wheel/body_link>
+            rel physics:body1 = </differential_drive_robot_4wheel/left_wheel2_link>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            float physics:JointEquivalentInertia = 0.0036878628
+            point3f physics:localPos0 = (0.081, 0.087, -0.012)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -inf
+            float physics:upperLimit = inf
+            float physxJoint:jointFriction = 0.1
+            float physxJoint:maxJointVelocity = 572.95776
+        }
+
+        def PhysicsRevoluteJoint "left_wheel_joint" (
+            prepend apiSchemas = ["PhysxJointAPI", "PhysicsDriveAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 100000
+            float drive:angular:physics:maxForce = inf
+            float drive:angular:physics:stiffness = 1.7453293
+            #float drive:angular:physics:targetVelocity = 500
+            uniform token drive:angular:physics:type = "force"
+            uniform token physics:axis = "Y"
+            rel physics:body0 = </differential_drive_robot_4wheel/body_link>
+            rel physics:body1 = </differential_drive_robot_4wheel/left_wheel_link>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            float physics:JointEquivalentInertia = 0.0036878628
+            point3f physics:localPos0 = (-0.081, 0.087, -0.012)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -inf
+            float physics:upperLimit = inf
+            float physxJoint:jointFriction = 0.1
+            float physxJoint:maxJointVelocity = 572.95776
+        }
+
+        def PhysicsRevoluteJoint "right_wheel2_joint" (
+            prepend apiSchemas = ["PhysxJointAPI", "PhysicsDriveAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 100000
+            float drive:angular:physics:maxForce = inf
+            float drive:angular:physics:stiffness = 1.7453293
+            #float drive:angular:physics:targetVelocity = -500
+            uniform token drive:angular:physics:type = "force"
+            uniform token physics:axis = "Y"
+            rel physics:body0 = </differential_drive_robot_4wheel/body_link>
+            rel physics:body1 = </differential_drive_robot_4wheel/right_wheel2_link>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            float physics:JointEquivalentInertia = 0.0036878628
+            point3f physics:localPos0 = (0.081, -0.087, -0.012)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -inf
+            float physics:upperLimit = inf
+            float physxJoint:jointFriction = 0.1
+            float physxJoint:maxJointVelocity = 572.95776
+        }
+
+        def PhysicsRevoluteJoint "right_wheel_joint" (
+            prepend apiSchemas = ["PhysxJointAPI", "PhysicsDriveAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 100000
+            float drive:angular:physics:maxForce = inf
+            float drive:angular:physics:stiffness = 1.7453293
+            #float drive:angular:physics:targetVelocity = -500
+            uniform token drive:angular:physics:type = "force"
+            uniform token physics:axis = "Y"
+            rel physics:body0 = </differential_drive_robot_4wheel/body_link>
+            rel physics:body1 = </differential_drive_robot_4wheel/right_wheel_link>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            float physics:JointEquivalentInertia = 0.0036878628
+            point3f physics:localPos0 = (-0.081, -0.087, -0.012)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -inf
+            float physics:upperLimit = inf
+            float physxJoint:jointFriction = 0.1
+            float physxJoint:maxJointVelocity = 572.95776
+        }
+
+    }
+
+    over "battery_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float3 physics:diagonalInertia = (0.0040384377, 0.0010695626, 0.0049481257)
+        float physics:mass = 1.315845
+        quatf physics:principalAxes = (1, 0, 0, 0)
+
+        def Xform "collisions" (
+            prepend apiSchemas = ["PhysicsCollisionAPI"]
+            instanceable = false
+            prepend references = </colliders/battery_link>
+        )
+        {
+        }
+    }
+
+    over "orin_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float3 physics:diagonalInertia = (0.0033880097, 0.0033880097, 0.004743684)
+        float physics:mass = 2.35224
+        quatf physics:principalAxes = (1, 0, 0, 0)
+
+        def Xform "collisions" (
+            prepend apiSchemas = ["PhysicsCollisionAPI"]
+            instanceable = false
+            prepend references = </colliders/orin_link>
+        )
+        {
+        }
+    }
+
+    over "d435_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float3 physics:diagonalInertia = (0.00003533625, 0.00000486405, 0.0000351378)
+        float physics:mass = 0.0486
+        quatf physics:principalAxes = (1, 0, 0, 0)
+
+        def Xform "collisions" (
+            prepend apiSchemas = ["PhysicsCollisionAPI"]
+            instanceable = false
+            prepend references = </colliders/d435_link>
+        )
+        {
+        }
+    }
+
+    over "gps_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float3 physics:diagonalInertia = (0.00000115164, 4.3407e-7, 0.00000150507)
+        float physics:mass = 0.00756
+        quatf physics:principalAxes = (1, 0, 0, 0)
+
+        def Xform "collisions" (
+            prepend apiSchemas = ["PhysicsCollisionAPI"]
+            instanceable = false
+            prepend references = </colliders/gps_link>
+        )
+        {
+        }
+    }
+
+    over "lidar_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float3 physics:diagonalInertia = (0.000010116844, 0.000010116844, 0.000010946964)
+        float physics:mass = 0.045486
+        quatf physics:principalAxes = (1, 0, 0, 0)
+
+        def Xform "collisions" (
+            prepend apiSchemas = ["PhysicsCollisionAPI"]
+            instanceable = false
+            prepend references = </colliders/lidar_link>
+        )
+        {
+        }
+    }
+
+    over "left_wheel2_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float3 physics:diagonalInertia = (0.00013736311, 0.000095233, 0.000095233)
+        float physics:mass = 0.1806221
+        quatf physics:principalAxes = (1, 0, 0, 0)
+
+        def Xform "collisions" (
+            prepend apiSchemas = ["PhysicsCollisionAPI"]
+            instanceable = false
+            prepend references = </colliders/left_wheel2_link>
+        )
+        {
+        }
+        
+    }
+
+    over "left_wheel_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float3 physics:diagonalInertia = (0.00013736311, 0.000095233, 0.000095233)
+        float physics:mass = 0.1806221
+        quatf physics:principalAxes = (1, 0, 0, 0)
+
+        def Xform "collisions" (
+            prepend apiSchemas = ["PhysicsCollisionAPI"]
+            instanceable = false
+            prepend references = </colliders/left_wheel_link>
+        )
+        {
+        }
+
+    }
+
+    over "right_wheel2_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float3 physics:diagonalInertia = (0.00013736311, 0.000095233, 0.000095233)
+        float physics:mass = 0.1806221
+        quatf physics:principalAxes = (1, 0, 0, 0)
+
+        def Xform "collisions" (
+            prepend apiSchemas = ["PhysicsCollisionAPI"]
+            instanceable = false
+            prepend references = </colliders/right_wheel2_link>
+        )
+        {
+        }
+
+    }
+
+    over "right_wheel_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float3 physics:diagonalInertia = (0.00013736311, 0.000095233, 0.000095233)
+        float physics:mass = 0.1806221
+        quatf physics:principalAxes = (1, 0, 0, 0)
+
+        def Xform "collisions" (
+            prepend apiSchemas = ["PhysicsCollisionAPI"]
+            instanceable = false
+            prepend references = </colliders/right_wheel_link>
+        )
+        {
+        }
+
+    }
+}
+
+over "colliders"
+{
+    def PhysicsCollisionGroup "robotCollisionGroup"
+    {
+        prepend rel collection:colliders:includes = </differential_drive_robot_4wheel>
+    }
+
+    def PhysicsCollisionGroup "collidersCollisionGroup"
+    {
+        prepend rel collection:colliders:includes = </colliders>
+        prepend rel physics:filteredGroups = </colliders/robotCollisionGroup>
+    }
+}
+

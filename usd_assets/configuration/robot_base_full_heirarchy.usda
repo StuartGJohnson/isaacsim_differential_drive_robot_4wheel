@@ -1,0 +1,552 @@
+#usda 1.0
+(
+    defaultPrim = "differential_drive_robot_4wheel"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "differential_drive_robot_4wheel" (
+        prepend apiSchemas = ["PhysicsArticulationRootAPI", "PhysxArticulationAPI"]
+)
+{
+    def Scope "Looks"
+    {
+    }
+
+
+    def Xform "body_link"
+    {
+        quatd xformOp:orient = (1, 0, 0, 0)
+        double3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Xform "visuals" (
+            instanceable = false
+            prepend references = </visuals/body_link>
+        )
+        {
+        }
+
+        def Xform "battery_link"
+        {
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0.007000000216066837, 0, 0.0494999997317791)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Xform "visuals" (
+                instanceable = false
+                prepend references = </visuals/battery_link>
+            )
+            {
+            }
+
+            def Xform "orin_link"
+            {
+                quatd xformOp:orient = (1, 0, 0, 0)
+                double3 xformOp:scale = (1, 1, 1)
+                double3 xformOp:translate = (0.01, 0, 0.0555)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Xform "visuals" (
+                    instanceable = false
+                    prepend references = </visuals/orin_link>
+                )
+                {
+                }
+
+                def Xform "d435_link"
+                {
+                    quatd xformOp:orient = (1, 0, 0, 0)
+                    double3 xformOp:scale = (1, 1, 1)
+                    double3 xformOp:translate = (0.073, 0, 0.0235)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                    def Xform "visuals" (
+                        instanceable = false
+                        prepend references = </visuals/d435_link>
+                    )
+                    {
+                    }
+                }
+
+                def Xform "gps_link"
+                {
+                    quatd xformOp:orient = (1, 0, 0, 0)
+                    double3 xformOp:scale = (1, 1, 1)
+                    double3 xformOp:translate = (0.034, -0.076, -0.016)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                    def Xform "visuals" (
+                        instanceable = false
+                        prepend references = </visuals/gps_link>
+                    )
+                    {
+                    }
+                }
+
+                def Xform "lidar_link"
+                {
+                    quatd xformOp:orient = (1, 0, 0, 0)
+                    double3 xformOp:scale = (1, 1, 1)
+                    double3 xformOp:translate = (-0.045, 0, 0.0595)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                    def Xform "visuals" (
+                        instanceable = false
+                        prepend references = </visuals/lidar_link>
+                    )
+                    {
+                    }
+                }
+
+            }
+
+        }
+
+        def Xform "left_wheel2_link"
+        {
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0.08100000023841858, 0.08699999749660492, -0.012000000104308128)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Xform "visuals" (
+                instanceable = false
+                prepend references = </visuals/left_wheel2_link>
+            )
+            {
+            }
+        }
+
+        def Xform "left_wheel_link"
+        {
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (-0.08100000023841858, 0.08699999749660492, -0.012000000104308128)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Xform "visuals" (
+                instanceable = false
+                prepend references = </visuals/left_wheel_link>
+            )
+            {
+            }
+        }
+
+        def Xform "right_wheel2_link"
+        {
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0.08100000023841858, -0.08699999749660492, -0.012000000104308128)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Xform "visuals" (
+                instanceable = false
+                prepend references = </visuals/right_wheel2_link>
+            )
+            {
+            }
+        }
+
+        def Xform "right_wheel_link"
+        {
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (-0.08100000023841858, -0.08699999749660492, -0.012000000104308128)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Xform "visuals" (
+                instanceable = false
+                prepend references = </visuals/right_wheel_link>
+            )
+            {
+            }
+        }
+
+    }
+
+}
+
+def Scope "visuals"
+{
+    token visibility = "invisible"
+
+    def Xform "body_link"
+    {
+        def Xform "mesh_0"
+        {
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (0.23999999463558197, 0.11999999731779099, 0.05999999865889549)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cube "box"
+            {
+                float3[] extent = [(-0.12, -0.06, -0.03), (0.12, 0.06, 0.03)]
+                double size = 1
+            }
+        }
+    }
+
+    def Xform "battery_link"
+    {
+        def Xform "mesh_0"
+        {
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (0.0949999988079071, 0.1899999976158142, 0.027000000700354576)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cube "box"
+            {
+                float3[] extent = [(-0.0475, -0.095, -0.0135), (0.0475, 0.095, 0.0135)]
+                double size = 1
+            }
+        }
+    }
+
+    def Xform "orin_link"
+    {
+        def Xform "mesh_0"
+        {
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (0.10999999940395355, 0.10999999940395355, 0.07199999690055847)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cube "box"
+            {
+                float3[] extent = [(-0.055, -0.055, -0.036), (0.055, 0.055, 0.036)]
+                double size = 1
+            }
+        }
+    }
+
+    def Xform "d435_link"
+    {
+        def Xform "mesh_0"
+        {
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (0.024000000208616257, 0.09000000357627869, 0.02500000037252903)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cube "box"
+            {
+                float3[] extent = [(-0.012, -0.045, -0.0125), (0.012, 0.045, 0.0125)]
+                double size = 1
+            }
+        }
+    }
+
+    def Xform "gps_link"
+    {
+        def Xform "mesh_0"
+        {
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (0.02500000037252903, 0.041999999433755875, 0.00800000037997961)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cube "box"
+            {
+                float3[] extent = [(-0.0125, -0.021, -0.004), (0.0125, 0.021, 0.004)]
+                double size = 1
+            }
+        }
+    }
+
+    def Xform "lidar_link"
+    {
+        def Xform "mesh_0"
+        {
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (0.03799999877810478, 0.03799999877810478, 0.03500000014901161)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cube "box"
+            {
+                float3[] extent = [(-0.019, -0.019, -0.0175), (0.019, 0.019, 0.0175)]
+                double size = 1
+            }
+        }
+    }
+
+    def Xform "left_wheel2_link"
+    {
+        def Xform "mesh_0"
+        {
+            quatd xformOp:orient = (0.7071067690849304, 0.7071067690849304, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cylinder "cylinder"
+            {
+                uniform token axis = "Z"
+                float3[] extent = [(-0.039, -0.039, -0.021), (0.039, 0.039, 0.021)]
+                double height = 0.041999999433755875
+                double radius = 0.039000000804662704
+            }
+        }
+    }
+
+    def Xform "left_wheel_link"
+    {
+        def Xform "mesh_0"
+        {
+            quatd xformOp:orient = (0.7071067690849304, 0.7071067690849304, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cylinder "cylinder"
+            {
+                uniform token axis = "Z"
+                float3[] extent = [(-0.039, -0.039, -0.021), (0.039, 0.039, 0.021)]
+                double height = 0.041999999433755875
+                double radius = 0.039000000804662704
+            }
+        }
+    }
+
+    def Xform "right_wheel2_link"
+    {
+        def Xform "mesh_0"
+        {
+            quatd xformOp:orient = (0.7071067690849304, 0.7071067690849304, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cylinder "cylinder"
+            {
+                uniform token axis = "Z"
+                float3[] extent = [(-0.039, -0.039, -0.021), (0.039, 0.039, 0.021)]
+                double height = 0.041999999433755875
+                double radius = 0.039000000804662704
+            }
+        }
+    }
+
+    def Xform "right_wheel_link"
+    {
+        def Xform "mesh_0"
+        {
+            quatd xformOp:orient = (0.7071067690849304, 0.7071067690849304, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cylinder "cylinder"
+            {
+                uniform token axis = "Z"
+                float3[] extent = [(-0.039, -0.039, -0.021), (0.039, 0.039, 0.021)]
+                double height = 0.041999999433755875
+                double radius = 0.039000000804662704
+            }
+        }
+    }
+}
+
+def Scope "colliders"
+{
+    token visibility = "invisible"
+
+    def Xform "body_link"
+    {
+        def Xform "mesh_0"
+        {
+            uniform token purpose = "guide"
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (0.23999999463558197, 0.11999999731779099, 0.05999999865889549)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cube "box"
+            {
+                float3[] extent = [(-0.12, -0.06, -0.03), (0.12, 0.06, 0.03)]
+                double size = 1
+            }
+        }
+    }
+
+    def Xform "battery_link"
+    {
+        def Xform "mesh_0"
+        {
+            uniform token purpose = "guide"
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (0.0949999988079071, 0.1899999976158142, 0.027000000700354576)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cube "box"
+            {
+                float3[] extent = [(-0.0475, -0.095, -0.0135), (0.0475, 0.095, 0.0135)]
+                double size = 1
+            }
+        }
+    }
+
+    def Xform "orin_link"
+    {
+        def Xform "mesh_0"
+        {
+            uniform token purpose = "guide"
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (0.10999999940395355, 0.10999999940395355, 0.07199999690055847)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cube "box"
+            {
+                float3[] extent = [(-0.055, -0.055, -0.036), (0.055, 0.055, 0.036)]
+                double size = 1
+            }
+        }
+    }
+
+    def Xform "d435_link"
+    {
+        def Xform "mesh_0"
+        {
+            uniform token purpose = "guide"
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (0.024000000208616257, 0.09000000357627869, 0.02500000037252903)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cube "box"
+            {
+                float3[] extent = [(-0.012, -0.045, -0.0125), (0.012, 0.045, 0.0125)]
+                double size = 1
+            }
+        }
+    }
+
+    def Xform "gps_link"
+    {
+        def Xform "mesh_0"
+        {
+            uniform token purpose = "guide"
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (0.02500000037252903, 0.041999999433755875, 0.00800000037997961)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cube "box"
+            {
+                float3[] extent = [(-0.0125, -0.021, -0.004), (0.0125, 0.021, 0.004)]
+                double size = 1
+            }
+        }
+    }
+
+    def Xform "lidar_link"
+    {
+        def Xform "mesh_0"
+        {
+            uniform token purpose = "guide"
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (0.03799999877810478, 0.03799999877810478, 0.03500000014901161)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cube "box"
+            {
+                float3[] extent = [(-0.019, -0.019, -0.0175), (0.019, 0.019, 0.0175)]
+                double size = 1
+            }
+        }
+    }
+
+    def Xform "left_wheel2_link"
+    {
+        def Xform "mesh_0"
+        {
+            uniform token purpose = "guide"
+            quatd xformOp:orient = (0.7071067690849304, 0.7071067690849304, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cylinder "cylinder"
+            {
+                uniform token axis = "Z"
+                float3[] extent = [(-0.039, -0.039, -0.021), (0.039, 0.039, 0.021)]
+                double height = 0.041999999433755875
+                double radius = 0.039000000804662704
+            }
+        }
+    }
+
+    def Xform "left_wheel_link"
+    {
+        def Xform "mesh_0"
+        {
+            uniform token purpose = "guide"
+            quatd xformOp:orient = (0.7071067690849304, 0.7071067690849304, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cylinder "cylinder"
+            {
+                uniform token axis = "Z"
+                float3[] extent = [(-0.039, -0.039, -0.021), (0.039, 0.039, 0.021)]
+                double height = 0.041999999433755875
+                double radius = 0.039000000804662704
+            }
+        }
+    }
+
+    def Xform "right_wheel2_link"
+    {
+        def Xform "mesh_0"
+        {
+            uniform token purpose = "guide"
+            quatd xformOp:orient = (0.7071067690849304, 0.7071067690849304, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cylinder "cylinder"
+            {
+                uniform token axis = "Z"
+                float3[] extent = [(-0.039, -0.039, -0.021), (0.039, 0.039, 0.021)]
+                double height = 0.041999999433755875
+                double radius = 0.039000000804662704
+            }
+        }
+    }
+
+    def Xform "right_wheel_link"
+    {
+        def Xform "mesh_0"
+        {
+            uniform token purpose = "guide"
+            quatd xformOp:orient = (0.7071067690849304, 0.7071067690849304, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cylinder "cylinder"
+            {
+                uniform token axis = "Z"
+                float3[] extent = [(-0.039, -0.039, -0.021), (0.039, 0.039, 0.021)]
+                double height = 0.041999999433755875
+                double radius = 0.039000000804662704
+            }
+        }
+    }
+}
+
+def Scope "meshes"
+{
+    token visibility = "invisible"
+}
+

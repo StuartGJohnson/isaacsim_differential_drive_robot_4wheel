@@ -1,0 +1,132 @@
+#usda 1.0
+(
+    customLayerData = {
+        dictionary cameraSettings = {
+            dictionary Front = {
+                double3 position = (5, 0, 0)
+                double radius = 5
+            }
+            dictionary Perspective = {
+                double3 position = (3.0103685636085644, 3.0145529137377665, 3.3784598877320664)
+                double3 target = (-0.12409191441429535, -0.11990756428509197, 0.2439994845232314)
+            }
+            dictionary Right = {
+                double3 position = (0, -5, 0)
+                double radius = 5
+            }
+            dictionary Top = {
+                double3 position = (0, 0, 5)
+                double radius = 5
+            }
+            string boundCamera = "/OmniverseKit_Persp"
+        }
+        dictionary omni_layer = {
+            string authoring_layer = "./world.usda"
+        }
+        dictionary renderSettings = {
+        }
+    }
+    defaultPrim = "World"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "World"
+{
+    def PhysicsScene "physicsScene"
+    {
+        float physics:contactOffset = 0.02
+        token physics:gravityDirection = "-Z"
+        float physics:gravityMagnitude = 9.81
+        int physics:positionIterations = 16
+        float physics:restOffset = 0.001
+        int physics:velocityIterations = 8
+    }
+
+    def Scope "Environment"
+    {
+        def Xform "GroundPlane" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </World/GroundMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            bool physics:kinematicEnabled = 1
+            bool physics:rigidBodyEnabled = 1
+
+            def Cube "Collider" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+            )
+            {
+                float physxCollision:contactOffset = 0.02
+                float physxCollision:restOffset = 0.001
+                float3 xformOp:scale = (100, 100, 0.1)
+                float3 xformOp:translate = (0, 0, -0.05)
+                uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate"]
+            }
+
+        }
+
+        def Xform "WallLeft" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI"]
+        )
+        {
+            bool physics:kinematicEnabled = 1
+            bool physics:rigidBodyEnabled = 1
+
+            def Cube "Collider" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3 xformOp:scale = (0.1, 4, 1)
+                float3 xformOp:translate = (-20, 0, 1)
+                uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate"]
+            }
+        }
+
+        def Xform "WallRight" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI"]
+        )
+        {
+            bool physics:kinematicEnabled = 1
+            bool physics:rigidBodyEnabled = 1
+
+            def Cube "Collider" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3 xformOp:scale = (0.1, 4, 1)
+                float3 xformOp:translate = (20, 0, 1)
+                uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate"]
+            }
+        }
+
+        def DistantLight "SunLight"
+        {
+            color3f color = (1, 1, 0.95)
+            float intensity = 1000
+            float3 xformOp:rotateXYZ = (-45, 0, 45)
+            float3 xformOp:scale = (1, 1, 1)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:rotateXYZ"]
+        }
+    }
+
+    def Material "GroundMaterial" (
+        apiSchemas = ["PhysicsMaterialAPI"]
+    )
+    {
+        custom uniform bool paused = 0 (
+            customData = {
+                bool nonpersistant = 1
+            }
+            hidden = true
+        )
+        float physics:density = 2000
+        float physics:dynamicFriction = 0.5
+        float physics:restitution = 0.01
+        float physics:staticFriction = 0.5
+    }
+
+}
+

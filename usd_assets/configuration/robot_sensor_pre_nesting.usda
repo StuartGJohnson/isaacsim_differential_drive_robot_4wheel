@@ -1,0 +1,125 @@
+#usda 1.0
+(
+    defaultPrim = "differential_drive_robot_4wheel"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+over "differential_drive_robot_4wheel"
+{
+
+    over "lidar_link"
+    {
+        def Lidar "Lidar"
+        {
+            bool drawLines = 1
+            bool drawPoints = 0
+            bool enabled = 1
+            bool enableSemantics = 0
+            bool highLod = 0
+            float horizontalFov = 360
+            float horizontalResolution = 1
+            float maxRange = 100
+            float minRange = 0.4
+            float rotationRate = 10
+            float verticalFov = 1
+            float verticalResolution = 1
+            token visibility = "inherited"
+            double3 xformOp:rotateXYZ = (0,0,0)
+            double3 xformOp:translate = (0,0,0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            float yawOffset = 0
+        }
+
+    }
+
+    over "body_link" {
+        def IsaacImuSensor "Imu_Sensor" (
+            prepend apiSchemas = ["IsaacSensorIMUAPI"]
+        )
+        {
+            int angularVelocityFilterWidth = 1
+            bool enabled = 1
+            int linearAccelerationFilterWidth = 1
+            int orientationFilterWidth = 1
+            float sensorPeriod = -1
+            token visibility = "invisible"
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+    }
+
+    over "d435_link" {
+        def Camera "RGB_Camera" (
+            prepend apiSchemas = ["IsaacCameraViewAPI", "IsaacRenderProductAPI"]
+        )
+        {
+            double3 xformOp:rotateXYZ = (90,0,0)
+            double3 xformOp:translate = (0.03,0,0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            token cameraProjectionType = "pinhole" (
+                allowedTokens = ["pinhole", "fisheyePolynomial", "fisheyeSpherical", "fisheyeKannalaBrandtK3", "fisheyeRadTanThinPrism", "omniDirectionalStereo", "generalizedProjection"]
+            )
+            float focalLength = 14.14
+            float focusDistance = 0
+            #float fthetaCx = 320
+            #float fthetaCy = 240
+            #float fthetaHeight = 480
+            #float fthetaWidth = 640
+            float horizontalAperture = 16
+            float verticalAperture = 12
+            int2 renderProduct:resolution = (640, 480)
+            token renderProduct:type = "color"
+            token renderProduct:frameId = "d435_link"
+            token visibility = "invisible"
+        }
+
+        def Camera "Depth_Camera" (
+            prepend apiSchemas = ["IsaacCameraViewAPI", "IsaacRenderProductAPI"]
+        )
+        {
+            double3 xformOp:rotateXYZ = (90,0,0)
+            double3 xformOp:translate = (0.03,0,0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            token cameraProjectionType = "pinhole" (
+                allowedTokens = ["pinhole", "fisheyePolynomial", "fisheyeSpherical", "fisheyeKannalaBrandtK3", "fisheyeRadTanThinPrism", "omniDirectionalStereo", "generalizedProjection"]
+            )
+            float2 clippingRange = (0.02, 300)
+            float focalLength = 14.14
+            float focusDistance = 0
+            #float fthetaCx = 320
+            #float fthetaCy = 240
+            #float fthetaHeight = 480
+            #float fthetaWidth = 640
+            float horizontalAperture = 16
+            float verticalAperture = 12
+            int2 resolution = (640, 480)
+            int2 renderProduct:resolution = (640, 480)
+            token renderProduct:type = "depth"
+            token renderProduct:frameId = "d435_link"
+            token visibility = "invisible"
+        }
+
+        #def RenderProduct "RGB_Camera_Output"
+        #{
+        #    rel camera = </differential_drive_robot_4wheel/d435_link/RGB_Camera>
+        #    rel renderProduct:camera = </differential_drive_robot_4wheel/d435_link/RGB_Camera>
+        #    token renderProduct:type = "color"
+        #    int2 resolution = (640, 480)
+        #    int2 renderProduct:resolution = (640, 480)
+        #}
+
+        #def RenderProduct "Depth_Camera_Output"
+        #{
+        #    rel camera = </differential_drive_robot_4wheel/d435_link/Depth_Camera>
+        #    rel renderProduct:camera = </differential_drive_robot_4wheel/d435_link/Depth_Camera>
+        #    token renderProduct:type = "depth"
+        #    int2 resolution = (640, 480)
+        #    int2 renderProduct:resolution = (640, 480)
+        #}
+    }
+
+}
+
