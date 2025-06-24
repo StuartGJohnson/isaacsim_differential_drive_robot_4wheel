@@ -12,6 +12,7 @@ world_arg = DeclareLaunchArgument(
 
 # Retrieve launch configurations
 world_file = LaunchConfiguration('world')
+robot_file = LaunchConfiguration('robot')
 
 def generate_launch_description():
     return LaunchDescription([
@@ -20,6 +21,6 @@ def generate_launch_description():
             executable='isaac_sim_node.py',
             name='isaacsim',
             output='screen',
-            parameters=[{'world': world_file}],
+            parameters=[{'world': world_file, 'robot':robot_file}],
         ),
     ])

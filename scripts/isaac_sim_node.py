@@ -34,7 +34,12 @@ class IsaacSimNode(Node):
         self.declare_parameter('world', default_world_file) # Declare the parameter with a default value
         world_file = self.get_parameter('world').get_parameter_value().string_value
 
+        default_robot_file = ""
+        self.declare_parameter('robot', default_robot_file) # Declare the parameter with a default value
+        robot_file = self.get_parameter('robot').get_parameter_value().string_value
+
         print('world file is: ', world_file)
+        print('robot file is: ', robot_file)
 
         omni.usd.get_context().open_stage(world_file, None)
         stage = omni.usd.get_context().get_stage()
@@ -55,7 +60,7 @@ class IsaacSimNode(Node):
 
         pkg_name = "isaacsim_differential_drive_robot_4wheel"
         pkg_dir = get_package_share_directory(pkg_name)
-        robot_path = os.path.join(pkg_dir, "usd_assets", "robot.usda")
+        robot_path = os.path.join(pkg_dir, "usd_assets", robot_file)
 
         # load the robot into the scene
         prim.GetReferences().AddReference(robot_path)

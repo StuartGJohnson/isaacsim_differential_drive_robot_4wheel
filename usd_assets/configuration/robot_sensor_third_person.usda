@@ -59,11 +59,9 @@ over "differential_drive_robot_4wheel"
             prepend apiSchemas = ["IsaacCameraViewAPI", "IsaacRenderProductAPI"]
         )
         {
-            double3 xformOp:rotateXYZ = (90,0,-90)
-            # offset the camera a bit so we are not imaging the inside of
-            # the camera housing (for the depth camera)
-            double3 xformOp:translate = (0.013,0,0)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            double3 xformOp:rotateXYZ = (45,0,-45)
+            double3 xformOp:translate = (0.0,-0.2,0.8)
+            uniform token[] xformOpOrder = ["xformOp:rotateXYZ", "xformOp:translate"]
             token cameraProjectionType = "pinhole" (
                 allowedTokens = ["pinhole", "fisheyePolynomial", "fisheyeSpherical", "fisheyeKannalaBrandtK3", "fisheyeRadTanThinPrism", "omniDirectionalStereo", "generalizedProjection"]
             )
@@ -86,11 +84,9 @@ over "differential_drive_robot_4wheel"
             prepend apiSchemas = ["IsaacCameraViewAPI", "IsaacRenderProductAPI"]
         )
         {
-            double3 xformOp:rotateXYZ = (90,0,-90)
-            # offset the camera a bit so we are not imaging the inside of
-            # the camera housing (for the depth camera)
-            double3 xformOp:translate = (0.013,0,0)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+            double3 xformOp:rotateXYZ = (45,0,-45)
+            double3 xformOp:translate = (0.0,-0.2,0.8)
+            uniform token[] xformOpOrder = ["xformOp:rotateXYZ", "xformOp:translate"]
             token cameraProjectionType = "pinhole" (
                 allowedTokens = ["pinhole", "fisheyePolynomial", "fisheyeSpherical", "fisheyeKannalaBrandtK3", "fisheyeRadTanThinPrism", "omniDirectionalStereo", "generalizedProjection"]
             )
