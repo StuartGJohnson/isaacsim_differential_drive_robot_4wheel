@@ -47,11 +47,11 @@ IsaacSim installation was accomplished using Nvidia instructions (for IsaacSim 4
 
 This was installed using a venv based on the existing system python 3.10, so access to the system ROS2 Humble installation was straightforward. This is detailed in the NVIDIA link above.
 
-#### Install Required ROS 2 Packages
+See also:
+- [requirements.txt](requirements.txt)
+- [ros2_pkg_list.txt](ros2_pkg_list.txt)
 
 ## Usage
-
-### Clone the Repository
 
 ### Build the Package
 
