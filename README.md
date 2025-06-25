@@ -36,10 +36,13 @@ One advantage of the conversion process is that it separated the usda file into 
 ## Requirements
 
 This package was developed on Ubuntu 22.04/ROS2 Humble/IsaacSim 4.5. IssacLab was also used in the URDF conversion process.
+IsaacSim installation was accomplished using Nvidia instructions (for IsaacSim 4.5):
+
+[IssacSim Python Installation](https://docs.isaacsim.omniverse.nvidia.com/latest/installation/install_python.html)
+
+This was installed using a venv based on the existing system python 3.10, so access to the system ROS2 Humble installation was straightforward. This is detailed in the NVIDIA link above.
 
 #### Install Required ROS 2 Packages
-
-Many ROS2 packages are required. Keep installing until it works.
 
 ## Usage
 
@@ -122,6 +125,6 @@ the addition of tire slip. See the section on Open-loop behavior. In addition, s
   - <a href="https://forums.developer.nvidia.com/t/wheel-robot-with-4-joints-cant-move-by-differential-controller-using-action-graph-and-ros/228800/9">More discussion of skid-steer issues</a>
 
 - IssacSim is heavily biased towards use of the isaacsim GUI, especially in tutorials. This is very annoying for reproducible work (code!). There are ways around this annoying predisposition to GUIs:
-  - In defining Action Graphs, one can use various incantations of the OmniGraph `omni.graph.core.Controller` class. See, for example, `scripts/controller_add.py`. GPT4o has suggested that using `omni.graph.tools.GraphBuilder` might help, but I have not tried this. If you are an IDE user (strongly suggested for APIs!), then both of these approaches offers limited code introspection.
+  - In defining Action Graphs, one can use various incantations of the OmniGraph `omni.graph.core.Controller` class. See, for example, `scripts/controller_add.py`. GPT4o has suggested that using `omni.graph.tools.GraphBuilder` might help, but I have not tried this. If you are an IDE user (strongly suggested for APIs!), then both of these approaches offers limited code introspection. This slows development a great deal.
   - You can build action graphs in the isaacsim gui, then dump them to a USDA file. Then include them in code.
-  - Use USDA file format, not USD.
+  - Use USDA file format, not USD, if possible. Mt models are all based on geometric primitives (for now), so this makes USDA very appealing.
