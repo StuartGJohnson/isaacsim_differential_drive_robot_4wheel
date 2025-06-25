@@ -130,6 +130,6 @@ the addition of tire slip. See the section on Open-loop behavior. In addition, s
   - <a href="https://forums.developer.nvidia.com/t/wheel-robot-with-4-joints-cant-move-by-differential-controller-using-action-graph-and-ros/228800/9">More discussion of skid-steer issues</a>
 
 - IssacSim is heavily biased towards use of the isaacsim GUI, especially in tutorials. This is very annoying for reproducible work (code!). There are ways around this annoying predisposition to GUIs:
-  - In defining Action Graphs, one can use various incantations of the OmniGraph `omni.graph.core.Controller` class. See, for example, `scripts/controller_add.py`. GPT4o has suggested that using `omni.graph.tools.GraphBuilder` might help, but I have not tried this. If you are an IDE user (strongly suggested for APIs!), then both of these approaches offers limited code introspection. This slows development a great deal.
-  - You can build action graphs in the isaacsim gui, then dump them to a USDA file. Then include them in code.
-  - Use USDA file format, not USD, if possible. Mt models are all based on geometric primitives (for now), so this makes USDA very appealing.
+  - In defining Action Graphs, one can use various incantations of the OmniGraph `omni.graph.core.Controller` class. See, for example, `scripts/controller_add.py`. GPT4o has suggested that using `omni.graph.tools.GraphBuilder` might help, but I have not tried this. If you are an IDE user (strongly suggested for APIs!), then both of these approaches offers limited code intelligence (strings are opaque!). This slows development.
+  - You can build action graphs in the isaacsim GUI, then dump them (per graph) to a USDA file. Then include them in code.
+  - Use USDA file format, not USD, if possible. My models are all based on geometric primitives (for now), so this makes USDA very appealing.
