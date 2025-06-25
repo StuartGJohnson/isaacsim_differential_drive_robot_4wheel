@@ -8,6 +8,7 @@ in this package.
 
 A few choices/compromises have been made to make simulator development more transparent and tractable:
 - USDA (NOT USD) format is used for all worlds and robots. The binary USD format is utterly inexplicable. Since I am defining robots and worlds with geometric primitives, this is fairly straightforward. USDA can be edited and rebuilt directly.
+- Action Graphs are all defined in python. These Action Graphs are added to the world/robot on simulator startup.
 
 ## Robot
 This is a custom robot based on the Waveshare UGV02. The base robot is augmented with compute and sensors:
@@ -59,7 +60,7 @@ source install/setup.bash
 After building the package, and given a world file with accompanying launch metadata:
 
 ```bash
-ros2 launch isaacsim_differential_drive_robot_4wheel isaac_sim.launch.py world:=<world>.usda
+ros2 launch isaacsim_differential_drive_robot_4wheel isaac_sim.launch.py world:=<world>.usda robot:=<robot>.usda
 ```
 
 This script assumes an accompanying "\<world\>.yml" file such as:
