@@ -12,7 +12,7 @@ over "differential_drive_robot_4wheel"
 {
     over "base_footprint"
     {
-    over "body_link" (
+    over "base_link" (
         prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
     )
     {
@@ -27,14 +27,14 @@ over "differential_drive_robot_4wheel"
         def Xform "collisions" (
             prepend apiSchemas = ["PhysicsCollisionAPI"]
             instanceable = false
-            prepend references = </colliders/body_link>
+            prepend references = </colliders/base_link>
         )
         {
         }
 
         def PhysicsFixedJoint "battery_joint"
         {
-            rel physics:body0 = </differential_drive_robot_4wheel/base_footprint/body_link>
+            rel physics:body0 = </differential_drive_robot_4wheel/base_footprint/base_link>
             rel physics:body1 = </differential_drive_robot_4wheel/base_footprint/battery_link>
             float physics:breakForce = 3.4028235e38
             float physics:breakTorque = 3.4028235e38
@@ -108,7 +108,7 @@ over "differential_drive_robot_4wheel"
             #float drive:angular:physics:targetVelocity = 0
             uniform token drive:angular:physics:type = "velocity"
             uniform token physics:axis = "Y"
-            rel physics:body0 = </differential_drive_robot_4wheel/base_footprint/body_link>
+            rel physics:body0 = </differential_drive_robot_4wheel/base_footprint/base_link>
             rel physics:body1 = </differential_drive_robot_4wheel/base_footprint/left_wheel2_link>
             float physics:breakForce = 3.4028235e38
             float physics:breakTorque = 3.4028235e38
@@ -135,7 +135,7 @@ over "differential_drive_robot_4wheel"
             #float drive:angular:physics:targetVelocity = 500
             uniform token drive:angular:physics:type = "velocity"
             uniform token physics:axis = "Y"
-            rel physics:body0 = </differential_drive_robot_4wheel/base_footprint/body_link>
+            rel physics:body0 = </differential_drive_robot_4wheel/base_footprint/base_link>
             rel physics:body1 = </differential_drive_robot_4wheel/base_footprint/left_wheel_link>
             float physics:breakForce = 3.4028235e38
             float physics:breakTorque = 3.4028235e38
@@ -162,7 +162,7 @@ over "differential_drive_robot_4wheel"
             #float drive:angular:physics:targetVelocity = 0
             uniform token drive:angular:physics:type = "velocity"
             uniform token physics:axis = "Y"
-            rel physics:body0 = </differential_drive_robot_4wheel/base_footprint/body_link>
+            rel physics:body0 = </differential_drive_robot_4wheel/base_footprint/base_link>
             rel physics:body1 = </differential_drive_robot_4wheel/base_footprint/right_wheel2_link>
             float physics:breakForce = 3.4028235e38
             float physics:breakTorque = 3.4028235e38
@@ -189,7 +189,7 @@ over "differential_drive_robot_4wheel"
             #float drive:angular:physics:targetVelocity = -500
             uniform token drive:angular:physics:type = "velocity"
             uniform token physics:axis = "Y"
-            rel physics:body0 = </differential_drive_robot_4wheel/base_footprint/body_link>
+            rel physics:body0 = </differential_drive_robot_4wheel/base_footprint/base_link>
             rel physics:body1 = </differential_drive_robot_4wheel/base_footprint/right_wheel_link>
             float physics:breakForce = 3.4028235e38
             float physics:breakTorque = 3.4028235e38

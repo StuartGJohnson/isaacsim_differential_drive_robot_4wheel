@@ -12,13 +12,13 @@
   <!-- plastic-->
   <!-- plastic-->
   <!-- Links -->
-  <link name="body_link">
+  <link name="base_link">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <box size="0.24 0.12 0.06"/>
       </geometry>
-      <material name="body_link_material">
+      <material name="base_link_material">
         <color rgba="0.0 0.0 0.0 1.0"/>
       </material>
     </visual>
@@ -244,7 +244,7 @@
   <!-- Left Wheel Joint -->
   <joint name="left_wheel_joint" type="continuous">
     <origin rpy="0 0 0" xyz="-0.08099999999999999 0.08700000000000001 -0.012"/>
-    <parent link="body_link"/>
+    <parent link="base_link"/>
     <child link="left_wheel_link"/>
     <axis xyz="0 1 0"/>
     <limit effort="100" velocity="10.0"/>
@@ -253,7 +253,7 @@
   <!-- Right Wheel Joint -->
   <joint name="right_wheel_joint" type="continuous">
     <origin rpy="0 0 0" xyz="-0.08099999999999999 -0.08700000000000001 -0.012"/>
-    <parent link="body_link"/>
+    <parent link="base_link"/>
     <child link="right_wheel_link"/>
     <axis xyz="0 1 0"/>
     <limit effort="100" velocity="10.0"/>
@@ -262,7 +262,7 @@
   <!-- Left Wheel2 Joint -->
   <joint name="left_wheel2_joint" type="continuous">
     <origin rpy="0 0 0" xyz="0.08099999999999999 0.08700000000000001 -0.012"/>
-    <parent link="body_link"/>
+    <parent link="base_link"/>
     <child link="left_wheel2_link"/>
     <axis xyz="0 1 0"/>
     <limit effort="100" velocity="10.0"/>
@@ -271,7 +271,7 @@
   <!-- Right Wheel2 Joint -->
   <joint name="right_wheel2_joint" type="continuous">
     <origin rpy="0 0 0" xyz="0.08099999999999999 -0.08700000000000001 -0.012"/>
-    <parent link="body_link"/>
+    <parent link="base_link"/>
     <child link="right_wheel2_link"/>
     <axis xyz="0 1 0"/>
     <limit effort="100" velocity="10.0"/>
@@ -280,7 +280,7 @@
   <!-- battery joint -->
   <joint name="battery_joint" type="fixed">
     <origin rpy="0 0 0" xyz=".007 0 0.049499999999999995"/>
-    <parent link="body_link"/>
+    <parent link="base_link"/>
     <child link="battery_link"/>
   </joint>
   <!-- orin joint -->
@@ -308,7 +308,7 @@
     <child link="gps_link"/>
   </joint>
   <!-- Gazebo Parameters -->
-  <gazebo reference="body_link">
+  <gazebo reference="base_link">
     <mu1>1.0</mu1>
     <mu2>1.0</mu2>
   </gazebo>
@@ -341,7 +341,7 @@
       <odom_publish_frequency>100</odom_publish_frequency>
       <topic>cmd_vel</topic>
       <odom_topic>odom</odom_topic>
-      <child_frame_id>body_link</child_frame_id>
+      <child_frame_id>base_link</child_frame_id>
       <tf_topic>/tf</tf_topic>
     </plugin>
     <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
@@ -442,7 +442,7 @@
       </lidar>
     </sensor>
   </gazebo>
-  <gazebo reference="body_link">
+  <gazebo reference="base_link">
     <sensor name="ugv_imu" type="imu">
       <always_on>true</always_on>
       <update_rate>20</update_rate>

@@ -19,7 +19,7 @@ def add_all_tf(graph_path = "/ActionGraph/TFPublishGraph"):
                 ("ros2_publish_transform_tree.inputs:topicName", "tf"),
                 ("ros2_publish_transform_tree.inputs:parentPrim", "/World"),
                 ("ros2_publish_transform_tree.inputs:targetPrims", ["/World/differential_drive_robot_4wheel"]),
-                ("ros2_publish_odometry.inputs:chassisFrameId", "body_link"),
+                ("ros2_publish_odometry.inputs:chassisFrameId", "base_link"),
                 ("ros2_publish_odometry.inputs:odomFrameId", "odom"),
                 ("ros2_publish_odometry.inputs:topicName", "odom"),
                 ("ros2_publish_raw_transform_tree.inputs:childFrameId", "base_footprint"),

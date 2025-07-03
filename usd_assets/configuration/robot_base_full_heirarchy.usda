@@ -14,7 +14,7 @@ def Xform "differential_drive_robot_4wheel" (
     }
 
 
-    def Xform "body_link"
+    def Xform "base_link"
     {
         quatd xformOp:orient = (1, 0, 0, 0)
         double3 xformOp:scale = (1, 1, 1)
@@ -23,7 +23,7 @@ def Xform "differential_drive_robot_4wheel" (
 
         def Xform "visuals" (
             instanceable = false
-            prepend references = </visuals/body_link>
+            prepend references = </visuals/base_link>
         )
         {
         }
@@ -173,7 +173,7 @@ def Scope "visuals"
 {
     token visibility = "invisible"
 
-    def Xform "body_link"
+    def Xform "base_link"
     {
         def Xform "mesh_0"
         {
@@ -356,7 +356,7 @@ def Scope "colliders"
 {
     token visibility = "invisible"
 
-    def Xform "body_link"
+    def Xform "base_link"
     {
         def Xform "mesh_0"
         {

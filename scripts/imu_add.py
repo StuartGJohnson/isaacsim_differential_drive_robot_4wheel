@@ -12,9 +12,9 @@ def add_imu(graph_path = "/ActionGraph/ImuPublishGraph"):
                 ("isaac_read_simulation_time", "isaacsim.core.nodes.IsaacReadSimulationTime"),
             ],
             og.Controller.Keys.SET_VALUES: [
-                ("readIMU.inputs:imuPrim", "/World/differential_drive_robot_4wheel/base_footprint/body_link/Imu_Sensor"),
+                ("readIMU.inputs:imuPrim", "/World/differential_drive_robot_4wheel/base_footprint/base_link/Imu_Sensor"),
                 ("ros2ImuPub.inputs:topicName", "/imu"),
-                ("ros2ImuPub.inputs:frameId", "body_link"),
+                ("ros2ImuPub.inputs:frameId", "base_link"),
             ],
             og.Controller.Keys.CONNECT: [
                 ("onPlayBackTick.outputs:tick","simStep.inputs:execIn"),

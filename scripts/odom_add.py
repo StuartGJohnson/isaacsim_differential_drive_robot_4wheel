@@ -14,10 +14,10 @@ def add_odom(graph_path = "/ActionGraph/OdomPublishGraph"):
                 ("isaac_compute_odometry_node","isaacsim.core.nodes.IsaacComputeOdometry")
             ],
             og.Controller.Keys.SET_VALUES: [
-                ("ros2_publish_odometry.inputs:chassisFrameId","body_link"),
+                ("ros2_publish_odometry.inputs:chassisFrameId","base_link"),
                 ("ros2_publish_odometry.inputs:odomFrameId","odom"),
                 ("ros2_publish_odometry.inputs:topicName","odom"),
-                ("ros2_publish_raw_transform_tree.inputs:childFrameId","body_link"),
+                ("ros2_publish_raw_transform_tree.inputs:childFrameId","base_link"),
                 ("ros2_publish_raw_transform_tree.inputs:parentFrameId","odom"),
                 ("ros2_publish_raw_transform_tree.inputs:topicName", "tf"),
                 ("isaac_compute_odometry_node.inputs:chassisPrim", "/World/differential_drive_robot_4wheel"),

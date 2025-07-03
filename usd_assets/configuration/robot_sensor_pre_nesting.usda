@@ -33,7 +33,7 @@ over "differential_drive_robot_4wheel"
 
     }
 
-    over "body_link" {
+    over "base_link" {
         def IsaacImuSensor "Imu_Sensor" (
             prepend apiSchemas = ["IsaacSensorIMUAPI"]
         )
